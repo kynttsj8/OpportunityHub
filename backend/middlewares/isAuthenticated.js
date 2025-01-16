@@ -26,4 +26,14 @@ const isAuthenticated = async (req, res, next) => {
     }
 }
 
+const isAdmin = (req, res, next) => {
+    if (req.user?.role !== "admin" || !req.user?.isAdmin) {
+        return res.status(403).json({
+            message: "Access denied",
+            success: false
+        });
+    }
+    next();
+};
+
 export default isAuthenticated;

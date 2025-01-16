@@ -20,9 +20,10 @@ const userSchema = new mongoose.Schema({
     },
     role: {
         type:String,
-        enum:['student', 'institution'],
+        enum:['student', 'institution', 'admin'],
         required:true
     },
+    isAdmin: { type: Boolean, default: false },
     profile: {
         bio:{type:String},
         skills:[{type:String}],

@@ -15,6 +15,7 @@ import Applicants from './components/institution/Applicants'
 import ProtectedRoute from './components/institution/ProtectedRoute'
 import UpdateOpportunity from './components/institution/UpdateOpportunity'
 import ProfileInstitution from './components/institution/ProfileInstitution'
+import Dashboard from './components/admin/Dashboard'
 
 const appRouter = createBrowserRouter([
   {
@@ -77,6 +78,12 @@ const appRouter = createBrowserRouter([
   {
     path: '/institution/programs/:id/update',
     element:<ProtectedRoute><UpdateOpportunity/></ProtectedRoute>
+  },
+
+  // Admin
+  {
+    path: '/admin/dashboard',
+    element: <Dashboard/>
   }
 ])
 

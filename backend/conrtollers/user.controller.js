@@ -28,6 +28,15 @@ export const register = async (req, res) => {
                 success:false
             });
         }
+
+        // Prevent user register account as an admin
+        if (role === "admin") {
+            return res.status(403).json({
+                message: "Cannot register as admin",
+                success: false
+            });
+        }
+
         const hashedPassword = await bcrypt.hash(password, 10);
         
         await User.create({
@@ -106,9 +115,10 @@ export const login = async (req, res) => {
         };
 
         const tokenData = {
-            userId: user._id
+            userId: user._id,
+            role: user.role
         }
-        const token = await jwt.sign(tokenData, process.env.SECRET_KEY, {expiresIn: '1d'});
+        const token = jwt.sign(tokenData, process.env.SECRET_KEY, {expiresIn: '1d'});
 
         user = {
             _id: user._id,

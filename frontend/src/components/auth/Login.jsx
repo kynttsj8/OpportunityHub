@@ -16,13 +16,13 @@ import LoginBackground from '../../assets/login_bg.jpg'
 import HomeBackground from "../../assets/home_bg.jpg"
 
 const Login = () => {
-  const [input, setInput] = useState ({
+  const [input, setInput] = useState({
     email: "",
     password: "",
     role: "",
   });
 
-  const { user, loading } = useSelector(store=>store.auth);
+  const { user, loading } = useSelector(store => store.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -46,16 +46,18 @@ const Login = () => {
         dispatch(setUser(res.data.user));
         if (input.role === 'institution') {
           navigate('/institution/dashboard');
+        } else if (input.role === 'admin') {
+          navigate('/admin/dashboard'); // Ensure this route exists in your application
         } else {
           navigate("/");
         }
-        toast.success(res.data.message); 
+        toast.success(res.data.message);
       }
     } catch (error) {
-        console.log(error);
-        toast.error(error.response.data.message);
+      console.log(error);
+      toast.error(error.response.data.message);
     } finally {
-        dispatch(setloading(false));
+      dispatch(setloading(false));
     }
   };
 
@@ -68,22 +70,22 @@ const Login = () => {
   return (
     <div style={{ backgroundImage: `url(${HomeBackground})`, backgroundSize: 'cover' }}>
       <Navbar />
-      <div  className="flex items-center justify-center max-w-7xl mx-auto">
+      <div className="flex items-center justify-center max-w-7xl mx-auto">
         <form
           onSubmit={submitHandler}
-          style={{backgroundImage: `url(${LoginBackground})`, backgroundSize: 'cover'}}
+          style={{ backgroundImage: `url(${LoginBackground})`, backgroundSize: 'cover' }}
           className="w-1/2 border border-gray-400 rounded-xl p-4 my-10 bg-[#eaf3fa] shadow-2xl"
         >
           <h1 className="font-bold text-xl mb-5">Login</h1>
           <div className="my-2">
             <Label>Email</Label>
             <Input
-               type="text"
-               value={input.email}
-               name="email"
-               onChange={changeEventHandler}
-               placeholder="example@gmail.com"
-               className="border-gray-300 rounded-xl bg-white shadow-xl"
+              type="text"
+              value={input.email}
+              name="email"
+              onChange={changeEventHandler}
+              placeholder="example@gmail.com"
+              className="border-gray-300 rounded-xl bg-white shadow-xl"
             />
           </div>
 
@@ -101,6 +103,17 @@ const Login = () => {
 
           <div className="flex items-center justify-between">
             <RadioGroup className="flex items-center gap-4 my-5">
+              <div className="flex items-center space-x-2">
+                <Input
+                  type="radio"
+                  name="role"
+                  value="admin"
+                  checked={input.role === 'admin'}
+                  onChange={changeEventHandler}
+                  className="cursor-pointer"
+                />
+                <Label htmlFor="admin">Admin</Label>
+              </div>
               <div className="flex items-center space-x-2">
                 <Input
                   type="radio"
@@ -127,10 +140,10 @@ const Login = () => {
           </div>
 
           {
-            loading ? <Button className="w-full my-4"> <Loader2 className="mr-2 h-4 w-4 animate-spin"/>Please wait...</Button> : <Button type="submit"  className="w-full my-4 rounded-xl text-white bg-[#FFA500] hover:bg-[#04724d] shadow-xl">  Login</Button>
+            loading ? <Button className="w-full my-4"> <Loader2 className="mr-2 h-4 w-4 animate-spin" />Please wait...</Button> : <Button type="submit" className="w-full my-4 rounded-xl text-white bg-[#FFA500] hover:bg-[#04724d] shadow-xl">  Login</Button>
           }
 
-          
+
 
           <span className="text-sm block text-center">
             Don't have an account?{" "}
@@ -141,7 +154,7 @@ const Login = () => {
         </form>
 
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

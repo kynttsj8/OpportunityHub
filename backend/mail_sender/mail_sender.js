@@ -34,20 +34,3 @@ const sendMail = async ({email, subject, html}) => {
 };
 
 export default sendMail;
-
-
-
-
-    // const mailOptions = {
-    //     from: process.env.GMAIL_USER,
-    //     to: 'kyntt882@gmail.com',
-    //     subject: 'Hello from OpportunityHub',
-    //     text: 'Hello world from OpportunityHub',
-    //     html: '<h1>Welcome</h1><p>PEEKABOBO!!</p>',
-    //     alternatves: [
-    //         {
-    //             constentType: 'text/x-web-markdown',
-    //             conten: '**SURPRISED?**'
-    //         }
-    //     ]
-    // };
