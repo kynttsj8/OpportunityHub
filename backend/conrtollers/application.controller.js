@@ -202,7 +202,6 @@ export const updateStatus = async (req, res) => {
             `
         });
 
-
         return res.status(200).json({
             message: "Status is updated successfully.",
             success: true
@@ -211,4 +210,21 @@ export const updateStatus = async (req, res) => {
     } catch (error) {
         console.log(error);
     }
-}
+};
+
+export const getAllApplications = async (req, res) => {
+    try {
+        const applications = await Application.find().populate('applicant opportunity'); // Assuming 'applicant' and 'opportunity' are referencing fields
+
+        return res.status(200).json({
+            applications,
+            success: true
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            message: "An error occurred while fetching applications",
+            success: false
+        });
+    }
+};

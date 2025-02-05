@@ -10,7 +10,7 @@ import { toast } from "sonner";
 import axios from "axios";
 import { USER_API_END_POINT } from "@/utils/constant";
 import { useDispatch, useSelector } from "react-redux";
-import { setloading, setUser } from "@/redux/authSlice";
+import { setLoading, setUser } from "@/redux/authSlice";
 import { Loader2 } from 'lucide-react'
 import LoginBackground from '../../assets/login_bg.jpg'
 import HomeBackground from "../../assets/home_bg.jpg"
@@ -26,15 +26,21 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // const changeEventHandler = (e) => {
+  //   setInput({ ...input, [e.target.name]: e.target.value });
+  // };
   const changeEventHandler = (e) => {
-    setInput({ ...input, [e.target.name]: e.target.value });
-  };
-
+    if (e.target.name === 'email' && e.target.value === 'opportunityhub.edu@gmail.com') {
+        setInput({ ...input, email: e.target.value, role: 'admin' });
+    } else {
+        setInput({ ...input, [e.target.name]: e.target.value });
+    }
+};
   const submitHandler = async (e) => {
     e.preventDefault();
 
     try {
-      dispatch(setloading(true));
+      dispatch(setLoading(true));
       const res = await axios.post(`${USER_API_END_POINT}/login`, input, {
         headers: {
           "Content-Type": "application/json",
@@ -45,9 +51,9 @@ const Login = () => {
       if (res.data.success) {
         dispatch(setUser(res.data.user));
         if (input.role === 'institution') {
-          navigate('/institution/dashboard');
+          navigate('/institution/units');
         } else if (input.role === 'admin') {
-          navigate('/admin/dashboard'); // Ensure this route exists in your application
+          navigate('/admin/dashboard');
         } else {
           navigate("/");
         }
@@ -57,7 +63,7 @@ const Login = () => {
       console.log(error);
       toast.error(error.response.data.message);
     } finally {
-      dispatch(setloading(false));
+      dispatch(setLoading(false));
     }
   };
 
@@ -101,49 +107,38 @@ const Login = () => {
             />
           </div>
 
-          <div className="flex items-center justify-between">
-            <RadioGroup className="flex items-center gap-4 my-5">
-              <div className="flex items-center space-x-2">
-                <Input
-                  type="radio"
-                  name="role"
-                  value="admin"
-                  checked={input.role === 'admin'}
-                  onChange={changeEventHandler}
-                  className="cursor-pointer"
-                />
-                <Label htmlFor="admin">Admin</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Input
-                  type="radio"
-                  name="role"
-                  value="student"
-                  checked={input.role === 'student'}
-                  onChange={changeEventHandler}
-                  className="cursor-pointer"
-                />
-                <Label htmlFor="option-one">Student</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Input
-                  type="radio"
-                  name="role"
-                  value="institution"
-                  checked={input.role === 'institution'}
-                  onChange={changeEventHandler}
-                  className="cursor-pointer"
-                />
-                <Label htmlFor="option-two">Institution</Label>
-              </div>
-            </RadioGroup>
-          </div>
+          {input.email !== 'opportunityhub.edu@gmail.com' && (
+            <div className="flex items-center justify-between">
+              <RadioGroup className="flex items-center gap-4 my-5">
+                <div className="flex items-center space-x-2">
+                  <Input
+                    type="radio"
+                    name="role"
+                    value="student"
+                    checked={input.role === 'student'}
+                    onChange={changeEventHandler}
+                    className="cursor-pointer"
+                  />
+                  <Label htmlFor="option-one">Student</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Input
+                    type="radio"
+                    name="role"
+                    value="institution"
+                    checked={input.role === 'institution'}
+                    onChange={changeEventHandler}
+                    className="cursor-pointer"
+                  />
+                  <Label htmlFor="option-two">Institution</Label>
+                </div>
+              </RadioGroup>
+            </div>
+          )}
 
           {
             loading ? <Button className="w-full my-4"> <Loader2 className="mr-2 h-4 w-4 animate-spin" />Please wait...</Button> : <Button type="submit" className="w-full my-4 rounded-xl text-white bg-[#FFA500] hover:bg-[#04724d] shadow-xl">  Login</Button>
           }
-
-
 
           <span className="text-sm block text-center">
             Don't have an account?{" "}

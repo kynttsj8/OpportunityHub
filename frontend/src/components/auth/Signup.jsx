@@ -11,10 +11,10 @@ import { toast } from "sonner";
 import axios from "axios";
 import { USER_API_END_POINT } from "@/utils/constant";
 import { useDispatch, useSelector } from "react-redux";
-import { setloading } from "@/redux/authSlice";
 import { Loader2 } from "lucide-react";
 import LoginBackground from '../../assets/login_bg.jpg'
 import HomeBackground from "../../assets/home_bg.jpg"
+import { setLoading } from "@/redux/authSlice";
 
 const Signup = () => {
   const[input, setInput] = useState ({
@@ -51,7 +51,7 @@ const Signup = () => {
     }
 
     try {
-      dispatch(setloading(true));
+      dispatch(setLoading(true));
       const res = await axios.post(`${USER_API_END_POINT}/register`, formData, {
         headers: { 'Content-Type': "multipart/form-data" },
         withCredentials: true,
@@ -67,7 +67,7 @@ const Signup = () => {
       toast.error(error.response.data.message);
 
     } finally {
-      dispatch(setloading(false));
+      dispatch(setLoading(false));
     }
     
   };
@@ -95,7 +95,7 @@ const Signup = () => {
               value={input.fullname}
               name="fullname"
               onChange={changeEventHandler}
-              placeholder="Taylor Alison Swift"
+              placeholder="John Doe, etc."
               className="border-gray-300 rounded-xl bg-white shadow-xl"
             />
           </div>
@@ -107,7 +107,7 @@ const Signup = () => {
               value={input.email}
               name="email"
               onChange={changeEventHandler}
-              placeholder="abc@gmail.com"
+              placeholder="abc@gmail.com, etc."
               className="border-gray-300 rounded-xl bg-white shadow-xl"
             />
           </div>
@@ -136,9 +136,21 @@ const Signup = () => {
             />
           </div>
 
-          <div className="flex items-center justify-between">
-            <RadioGroup className="flex items-center gap-4 my-5">
-              <div className="flex items-center space-x-2">
+          <div className="my-2 ">
+              <Label>Avatar</Label>
+              <Input
+                accept="image/*"
+                type="file"
+                name="file"
+                onChange={changeFileHandler}
+                className="cursor-pointer border-gray-300 rounded-xl shadow-xl"
+              />
+            </div>
+
+          <div className="flex items-center">
+            <Label>You're currently a: </Label>
+            <RadioGroup className="flex items-center gap-4 my-2">
+              <div className="flex items-center space-x-2 mx-2">
                 <Input
                   type="radio"
                   name="role"
@@ -162,16 +174,7 @@ const Signup = () => {
               </div>
             </RadioGroup>
 
-            <div className="flex items-center gap-2">
-              <Label>Avatar</Label>
-              <Input
-                accept="image/*"
-                type="file"
-                name="file"
-                onChange={changeFileHandler}
-                className="cursor-pointer border-gray-300 rounded-xl shadow-xl"
-              />
-            </div>
+            
           </div>
 
           {

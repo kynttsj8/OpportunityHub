@@ -15,7 +15,12 @@ import Applicants from './components/institution/Applicants'
 import ProtectedRoute from './components/institution/ProtectedRoute'
 import UpdateOpportunity from './components/institution/UpdateOpportunity'
 import ProfileInstitution from './components/institution/ProfileInstitution'
-import Dashboard from './components/admin/Dashboard'
+import Dashboard from './components/admin/dashboardPage/Dashboard'
+import UsersManagement from './components/admin/usersManagement/UsersManagement'
+import UnitsManagement from './components/admin/unitsManagement/UnitsManagement'
+import ProgramsManagement from './components/admin/programsManagement/ProgramsManagement'
+import ApplicationsManagement from './components/admin/applicationsManagement/ApplicationsManagement'
+import ProgramsAdminDetails from './components/admin/programsManagement/ProgramsAdminDetails'
 
 const appRouter = createBrowserRouter([
   {
@@ -84,7 +89,27 @@ const appRouter = createBrowserRouter([
   {
     path: '/admin/dashboard',
     element: <Dashboard/>
-  }
+  },
+  {
+    path: '/admin/users',
+    element: <UsersManagement/>
+  },
+  {
+    path: '/admin/units',
+    element: <UnitsManagement/>
+  },
+  {
+    path: '/admin/programs',
+    element: <ProgramsManagement/>
+  },
+  {
+    path: '/admin/applications',
+    element: <ApplicationsManagement/>
+  },
+  {
+    path: '/details/:id',
+    element:<ProgramsAdminDetails/>
+  },
 ])
 
 function App() {

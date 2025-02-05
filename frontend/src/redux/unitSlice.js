@@ -27,6 +27,7 @@ const unitSlice = createSlice({
     initialState: {
         singleUnit: null,
         units: [],
+        allUnits: [],
         searchUnitByText: "",
     },
     reducers: {
@@ -35,6 +36,9 @@ const unitSlice = createSlice({
         },
         setUnits: (state, action) => {
             state.units = action.payload;
+        },
+        setAllUnits: (state, action) => {
+            state.allUnits = action.payload;
         },
         setSearchUnitByText: (state, action) => {
             state.searchUnitByText = action.payload;
@@ -51,5 +55,5 @@ const unitSlice = createSlice({
     },
 });
 
-export const { setSingleUnit, setUnits, setSearchUnitByText } = unitSlice.actions;
+export const { setSingleUnit, setUnits, setAllUnits, setSearchUnitByText } = unitSlice.actions;
 export default unitSlice.reducer;

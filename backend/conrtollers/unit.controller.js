@@ -56,7 +56,23 @@ export const getUnit = async (req, res) => {
     } catch (error) { 
         console.log(error); 
     }
-}
+};
+
+export const getAllUnits = async (req, res) => {
+    try {
+        const allUnits = await Unit.find();
+        return res.status(200).json({
+            allUnits,
+            success: true
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            message: "Failed to fetch all units",
+            success: false
+        });
+    }
+};
 
 export const getUnitById = async (req, res) => {
     try {

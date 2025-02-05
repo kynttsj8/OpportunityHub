@@ -47,7 +47,7 @@ const Opportunity = ({opportunity}) => {
 
             <div className='my-2'>
                 <Button className="mr-3 cursor-pointer hover:bg-[#d5e7f5] border-b-2" onClick={() => navigate(`/description/${opportunity?._id}`)}>Details</Button>
-                <Button className='bg-[#d5e7f5] hover:bg-[#04724d] hover:text-white'>Save For Later</Button>
+                {/* <Button className='bg-[#d5e7f5] hover:bg-[#04724d] hover:text-white'>Save For Later</Button> */}
             </div>
         </div>
     )

@@ -5,13 +5,17 @@ const applicationSlice = createSlice({
     initialState: {
         applicants:[],
         opportunityTitle: "",
+        applications:[]
     },
     reducers:{
         setAllApplicants:(state,action) => {
             state.applicants = action.payload;
             state.opportunityTitle = action.payload.title;
+        },
+        setApplications:(state,action) => {
+            state.applications = action.payload;
         }
     }
 });
-export const {setAllApplicants} = applicationSlice.actions;
+export const { setAllApplicants, setApplications } = applicationSlice.actions;
 export default applicationSlice.reducer;

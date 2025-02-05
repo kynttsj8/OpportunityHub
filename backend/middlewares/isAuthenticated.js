@@ -25,6 +25,7 @@ const isAuthenticated = async (req, res, next) => {
         console.log(error);
     }
 }
+export default isAuthenticated;
 
 const isAdmin = (req, res, next) => {
     if (req.user?.role !== "admin" || !req.user?.isAdmin) {
@@ -35,5 +36,3 @@ const isAdmin = (req, res, next) => {
     }
     next();
 };
-
-export default isAuthenticated;

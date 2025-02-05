@@ -72,7 +72,8 @@ export const register = async (req, res) => {
         });
 
         return res.status(201).json({
-            message:"Account created successfully."
+            message:"Account created successfully.",
+            success: true
         })
     } catch (error) {
         console.log(req.file);
@@ -123,6 +124,7 @@ export const login = async (req, res) => {
         user = {
             _id: user._id,
             fullname: user.fullname,
+            email: user.email,
             phoneNumber: user.phoneNumber,
             role: user.role,
             profile: user.profile
@@ -272,3 +274,45 @@ export const updateProfileInstitution = async (req, res) => {
     }
 };
 
+// getAllUsers for admin role
+export const getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find();
+        
+        return res.status(200).json({
+            users,
+            success: true
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            message: "Failed to fetch users",
+            success: false
+        });
+    }
+};
+
+export const deleteUserById = async (req, res) => {
+    try {
+        const userId = req.params.id;
+        const deletedUser = await User.findByIdAndDelete(userId);
+
+        if (!deletedUser) {
+            return res.status(404).json({
+                message: "User not found.",
+                success: false,
+            });
+        }
+
+        return res.status(200).json({
+            message: "User deleted successfully.",
+            success: true,
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            message: "An error occurred while deleting the user.",
+            success: false,
+        });
+    }
+};

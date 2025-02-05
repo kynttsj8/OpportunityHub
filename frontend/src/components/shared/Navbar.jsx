@@ -50,6 +50,10 @@ const Navbar = () => {
                                     <li><Link to="/institution/units">Units</Link></li>
                                     <li><Link to="/institution/programs">Programs</Link></li>
                                 </>
+                            ) : user && user.role === 'admin' ? (
+                                <>
+                                    <li><Link to="/admin/dashboard">Admin Dashboard</Link></li>
+                                </>
                             ) : (
                                 <>
                                     <li><Link to="/">Home</Link></li>
