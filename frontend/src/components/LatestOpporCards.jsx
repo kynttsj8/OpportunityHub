@@ -26,7 +26,7 @@ const LatestOpporCards = ({ opportunity }) => {
       </div>
 
       <div className='flex items-center gap-2 mt-4'>
-        <Badge className='text-blue-600 font-bold' variant="ghost">{opportunity?.position} Vacancies</Badge>
+        <Badge className='text-blue-600 font-bold' variant="ghost"><span>{opportunity?.position}&nbsp;</span>{opportunity?.position <= 1 ? 'Vacancy' : 'Vacancies'}</Badge>
         <Badge className='text-yellow-600 font-bold' variant="ghost">{opportunity?.type}</Badge>
         <Badge className='text-green-600 font-bold' variant="ghost">{opportunity?.location}</Badge>
       </div>

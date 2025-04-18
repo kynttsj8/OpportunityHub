@@ -3,6 +3,7 @@ import authSlice from "./authSlice"
 import opportunitySlice from "./opportunitySlice"
 import unitSlice from "./unitSlice"
 import applicationSlice from "./applicationSlice"
+// import bookmarkSlice from "./bookmarkSlice"
 import {
     persistStore,
     persistReducer,
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
     opportunity: opportunitySlice,
     unit: unitSlice,
     application: applicationSlice,
+    // bookmark: bookmarkSlice,
 })
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 

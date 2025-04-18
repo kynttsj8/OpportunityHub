@@ -12,6 +12,16 @@ const opportunitySchema = new mongoose.Schema({
     requirements:[{
         type:String
     }],
+    nationalRequirement: {
+        type: String,
+        required:true,
+        default: "Not specified"
+    },
+    field: {
+        type: String,
+        required:true,
+        default: "Not specified"
+    },
     location:{
         type:String,
         required:true
@@ -22,7 +32,8 @@ const opportunitySchema = new mongoose.Schema({
     },
     position:{ //vacancies
         type:Number,
-        required:true
+        // required:true,
+        default: 1
     },
     unit:{
         type:mongoose.Schema.Types.ObjectId,

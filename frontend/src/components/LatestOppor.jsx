@@ -3,7 +3,6 @@ import LatestOpporCards from "./LatestOpporCards";
 import { useSelector } from "react-redux";
 import { Sun } from "lucide-react";
 
-// const randomOpportunities = [1,2,3,4,5,6,7,8];
 
 const LatestOppor = () => {
   const { allOpportunities } = useSelector((store) => store.opportunity);

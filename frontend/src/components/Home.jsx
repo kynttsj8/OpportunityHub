@@ -20,6 +20,7 @@ const Home = () => {
   }, []);
   return (
     <div style={{ backgroundImage: `url(${HomeBackground})`, backgroundSize: 'cover' }}>
+        
         <Navbar/>
         <DefaultPage/>
         <CategorySection/>

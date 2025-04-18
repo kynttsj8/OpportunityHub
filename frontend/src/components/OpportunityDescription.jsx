@@ -18,7 +18,7 @@ const OpportunityDescription = () => {
   const { user } = useSelector(store=>store.auth);
   const isInitiallyApplied = singleOpportunity?.applications?.some(application => application.applicant === user?._id) || false;
   const [isApplied, setIsApplied] = useState(isInitiallyApplied);
-
+  const isVacancyFull = singleOpportunity?.applications?.length >= singleOpportunity?.position;
   const dispatch = useDispatch();
   const params = useParams();
   const opportunityId = params.id;
@@ -49,7 +49,7 @@ const OpportunityDescription = () => {
         );
         if (res.data.success) {
           dispatch(setSingleOpportunity(res.data.opportunity));
-          setIsApplied(res.data.opportunity.applications.some(application => application.applicant === user?._id)) //ensure the state iss in sync with fetched data
+          setIsApplied(res.data.opportunity.applications.some(application => application.applicant === user?._id))
         }
       } catch (error) {
         console.log("Error fetching single opportunity:", error);
@@ -64,7 +64,7 @@ const OpportunityDescription = () => {
         <div className="flex items-center justify-between">
           <div>
           <div>
-            <Button className="mb-2 bg-gray-600 text-white rounded-xl hover:text-black" onClick={()=>navigate("/programs")}>
+            <Button className="mb-2 bg-gray-600 text-white rounded-xl hover:text-black" onClick={()=>navigate(-1)}>
             <ArrowLeft />
             Previous
             </Button>
@@ -85,11 +85,15 @@ const OpportunityDescription = () => {
           </div>
 
           <Button
-            onClick={isApplied ? null : appliedOpportunityHandler}
-            disable={isApplied}
-            className={`rounded-lg ${isApplied ? "bg-gray-400 cursor-not-allowed" : "text-white bg-[#FFA500] hover:bg-[#04724d]"}`}
+            onClick={!isApplied && !isVacancyFull ? appliedOpportunityHandler : null}
+            disabled={isApplied || isVacancyFull}
+            className={`rounded-lg ${
+              isApplied || isVacancyFull
+                ? "bg-gray-400 cursor-not-allowed"
+                : "text-white bg-[#FFA500] hover:bg-[#04724d]"
+            }`}
           >
-            {isApplied ? "Already applied" : "Apply Now"}
+            {isApplied ? "Already Applied" : isVacancyFull ? "Vacancy Full" :  "Apply Now"}
           </Button>
         </div>
         

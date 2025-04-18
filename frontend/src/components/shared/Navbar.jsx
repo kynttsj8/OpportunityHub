@@ -35,7 +35,7 @@ const Navbar = () => {
         <div className=' bg-[#19486A]'>
             
             <div className='flex items-center justify-between mx-auto max-w-7xl h-16'> 
-            
+                
                 <div className='flex items-center justify-between'>
                     <img src={WebLogo} alt="OpportunityHub Logo" className="h-16 w-16" />
                     <h1 className='text-[#FFD700] text-2xl font-bold'>Opportunity<span className='text-white'>HUB</span></h1>

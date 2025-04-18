@@ -73,7 +73,11 @@ const appRouter = createBrowserRouter([
     element:<ProtectedRoute><InstiOpportunities/></ProtectedRoute>
   },
   {
-    path: '/institution/opportunity/post',
+    path: '/institution/opportunity/post-manually',
+    element:<ProtectedRoute><PostOpportunity/></ProtectedRoute>
+  },
+  {
+    path: '/institution/opportunity/post-automatically',
     element:<ProtectedRoute><PostOpportunity/></ProtectedRoute>
   },
   {

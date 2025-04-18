@@ -48,7 +48,7 @@ const opportunitySlice = createSlice({
         },
         setSearchedQuery: (state, action) => {
             state.searchedQuery = action.payload;
-        }
+        },
     },
     extraReducers: (builder) => {
             builder
@@ -67,7 +67,7 @@ export const {
     setAllInstiOpportunities, 
     setSearchOpportunityByText, 
     setAllAppliedOpportunities,
-    setSearchedQuery 
+    setSearchedQuery,
 } = opportunitySlice.actions;
 
     export default opportunitySlice.reducer;

@@ -1,6 +1,6 @@
 import express from "express";
 import isAuthenticated from "../middlewares/isAuthenticated.js";
-import { applyOpportunity, getApplicants, getAppliedOpportunities, updateStatus, getAllApplications } from "../conrtollers/application.controller.js";
+import { applyOpportunity, getApplicants, getAppliedOpportunities, updateStatus, getAllApplications } from "../controllers/application.controller.js";
 
 const router = express.Router();
 

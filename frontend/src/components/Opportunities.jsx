@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import HomeBackground from "../assets/home_bg.jpg"
 
+// this is the program page for guests and students
 const Opportunities = () => {
     const { allOpportunities, searchedQuery } = useSelector(store => store.opportunity);
     const [filterOpportunities, setFilterOpportunities] = useState(allOpportunities);
@@ -45,6 +46,7 @@ const Opportunities = () => {
                                                 exit={{opacity:0, x:-100}}
                                                 transition={{duration:0.3}}
                                                 key={opportunity?._id}
+                                                className="w-full h-full bg-white shadow-lg rounded-2xl border border-gray-400 overflow-hidden flex flex-col"
                                             >
                                                 <Opportunity opportunity={opportunity} />
                                             </motion.div>

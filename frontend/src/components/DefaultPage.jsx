@@ -22,7 +22,7 @@ const DefaultPage = () => {
             <div className='flex flex-col gap-5 my-10'>
                 <span className='mx-auto px-4 py-2 rounded-full bg-gray-100 text-[#F83002] font-medium'>You found yourself the best website!</span>
                 <h1 className='text-[#19486A] text-5xl font-bold'>Access, Apply & <br/> Achieve Your <span className='text-[#FFD700]'>Dream Opportunity</span> </h1>
-                <p>Your kiss, my cheek, I watched you leave. Your smile my ghost, I fell to my knees. When you're young, you just run. But you come back to what you need</p>
+                {/* <p>Your kiss, my cheek, I watched you leave. Your smile my ghost, I fell to my knees. When you're young, you just run. But you come back to what you need</p> */}
 
                 <div className='flex w-[40%] bg-white shadow-xl border border-[#19486A] pl-3 rounded-full items-center gap-4 mx-auto'>
                     <input 

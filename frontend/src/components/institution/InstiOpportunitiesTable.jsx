@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { deleteOpportunityById } from '@/redux/opportunitySlice'
 import OpportunityDialog from './OpportunityDialog'
 
-const InstiOpportunitiesTable = () => {
+const InstiOpportunitiesTable = ({ crawledData = [] }) => {
     const [open, setOpen] = useState(false);
     const [selectedOpportunityId, setSelectedOpportunityId] = useState(null);
     const { allInstiOpportunities, searchOpportunityByText } = useSelector(store => store.opportunity);
